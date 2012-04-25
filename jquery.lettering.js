@@ -52,7 +52,16 @@
 		}
 	};
 
-	$.fn.lettering = function( method ) {
+	$.fn.lettering = function( method, rainbow ) {
+		
+		if( rainbow ) {
+			if( !rainbow[0] || !rainbo[1] ) {console.log('invalid rainbow hsla values. Use [['h','s','l','a'],['h','s','l','a']] ');}
+			rainbow = {
+			  'start': { 'h': rainbow[0][0]|'0', 's': rainbow[0][1]|'100%', 'l': rainbow[0][2]|'50%', 'a':rainbow[0][3]|'1'},
+			  'end':   { 'h': rainbow[1][0]|'0', 's': rainbow[1][1]|'100%', 'l': rainbow[1][2]|'50%', 'a':rainbow[1][3]|'1'}
+			} 
+		}
+		
 		// Method calling logic
 		if ( method && methods[method] ) {
 			return methods[ method ].apply( this, [].slice.call( arguments, 1 ));

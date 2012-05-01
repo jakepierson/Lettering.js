@@ -14,8 +14,15 @@
 	function injector(t, splitter, klass, after) {
 		var a = t.text().split(splitter), inject = '';
 		if (a.length) {
+			var ch = rainbow.start.h;
+			var cs = rainbow.start.s;
+			var cl = rainbow.start.l;
+			var ca = rainbow.start.a;
+			var slice = (rainbow.end.h-rainbow.start.h)/a.length;
+			
 			$(a).each(function(i, item) {
-				inject += '<span class="'+klass+(i+1)+'">'+item+'</span>'+after;
+				inject += '<span style="color: hsla('+ch+','+cs+','+cl+','+ca+');" class="'+klass+(i+1)+'">'+item+'</span>'+after;
+				ch = ch+(slice*1)
 			});	
 			t.empty().append(inject);
 		}
@@ -57,8 +64,8 @@
 		if( rainbow ) {
 			if( !rainbow[0] || !rainbo[1] ) {console.log('invalid rainbow hsla values. Use [['h','s','l','a'],['h','s','l','a']] ');}
 			rainbow = {
-			  'start': { 'h': rainbow[0][0]|'0', 's': rainbow[0][1]|'100%', 'l': rainbow[0][2]|'50%', 'a':rainbow[0][3]|'1'},
-			  'end':   { 'h': rainbow[1][0]|'0', 's': rainbow[1][1]|'100%', 'l': rainbow[1][2]|'50%', 'a':rainbow[1][3]|'1'}
+			  start: { h: rainbow[0][0]|'0', s: rainbow[0][1]|'100%', l: rainbow[0][2]|'50%', a: rainbow[0][3]|'1'},
+			  end:   { h: rainbow[1][0]|'0', s: rainbow[1][1]|'100%', l: rainbow[1][2]|'50%', a: rainbow[1][3]|'1'}
 			} 
 		}
 		
